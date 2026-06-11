@@ -138,6 +138,17 @@ const setExecutionProviders = async (
             if (webgpuOptions.validationMode) {
               appendEpOption(epOptions, 'validationMode', webgpuOptions.validationMode, allocs);
             }
+
+            for (const key of [
+              'storageBufferCacheMode',
+              'uniformBufferCacheMode',
+              'queryResolveBufferCacheMode',
+            ] as const) {
+              const value = webgpuOptions[key];
+              if (value) {
+                appendEpOption(epOptions, key, value, allocs);
+              }
+            }
           }
 
           const info = getInstance().webgpuRegisterDevice!(customDevice);

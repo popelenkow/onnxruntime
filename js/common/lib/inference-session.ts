@@ -243,6 +243,7 @@ export declare namespace InferenceSession {
   export interface XnnpackExecutionProviderOption extends ExecutionProviderOption {
     readonly name: 'xnnpack';
   }
+  export type WebGpuBufferCacheMode = 'disabled' | 'lazyRelease' | 'simple' | 'bucket';
   export interface WebGpuExecutionProviderOption extends ExecutionProviderOption {
     readonly name: 'webgpu';
 
@@ -271,6 +272,27 @@ export declare namespace InferenceSession {
      * @default 'basic'
      */
     validationMode?: 'disabled' | 'wgpuOnly' | 'basic' | 'full';
+
+    /**
+     * Specify the cache mode for WebGPU storage buffers.
+     *
+     * @default 'bucket'
+     */
+    storageBufferCacheMode?: WebGpuBufferCacheMode;
+
+    /**
+     * Specify the cache mode for WebGPU uniform buffers.
+     *
+     * @default 'simple'
+     */
+    uniformBufferCacheMode?: WebGpuBufferCacheMode;
+
+    /**
+     * Specify the cache mode for WebGPU query resolve buffers.
+     *
+     * @default 'disabled'
+     */
+    queryResolveBufferCacheMode?: WebGpuBufferCacheMode;
 
     /**
      * Specify an optional WebGPU device to be used by the WebGPU execution provider.
